@@ -1,0 +1,1 @@
+var taskIdCounter = 0;
