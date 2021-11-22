@@ -1,0 +1,18 @@
+{
+    "sourceFile": "index.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1637611543007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1637611543007,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n  <title>Coding Quiz</title>\r\n  <link rel=\"stylesheet\" href=\"./assets/css/style.css\">\r\n</head>\r\n\r\n<body>\r\n  <main>\r\n    <div class=\"preamble\">\r\n      You are about to take a coding quiz\r\n    </div>\r\n    <div class=\"quiz-question-answerform\">\r\n      <div class=\"question\">\r\n\r\n      </div>\r\n      <form class=\"answer-form\">\r\n        <ol>\r\n          <li class=\"answer-li\">\r\n            <button id=\"#answer-a\"></button>\r\n          </li>\r\n          <li class=\"answer-li\">\r\n            <button id=\"#answer-b\"></button>\r\n          </li>\r\n          <li class=\"answer-li\">\r\n            <button id=\"#answer-c\"></button>\r\n          </li>\r\n          <li class=\"answer-li\">\r\n            <button id=\"#answer-d\"></button>\r\n          </li>\r\n        </ol>\r\n      </form>\r\n    </div>\r\n  </main>\r\n\r\n\r\n  <footer>\r\n    <p>View Leader Board</p>\r\n    <p>Established 2021</p>\r\n  </footer>  \r\n\r\n  <script src=\"./assets/js/script.js\"></script>\r\n</body>\r\n\r\n</html>"
+        }
+    ]
+}
