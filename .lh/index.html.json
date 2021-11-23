@@ -3,11 +3,75 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1637611543007,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1637612349053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,22 +18,12 @@\n       <div class=\"question\">\r\n \r\n       </div>\r\n       <form class=\"answer-form\">\r\n-        <ol>\r\n-          <li class=\"answer-li\">\r\n-            <button id=\"#answer-a\"></button>\r\n-          </li>\r\n-          <li class=\"answer-li\">\r\n-            <button id=\"#answer-b\"></button>\r\n-          </li>\r\n-          <li class=\"answer-li\">\r\n-            <button id=\"#answer-c\"></button>\r\n-          </li>\r\n-          <li class=\"answer-li\">\r\n-            <button id=\"#answer-d\"></button>\r\n-          </li>\r\n-        </ol>\r\n+            <button class=\"answer-li\" id=\"#answer-a\"></button>\r\n+            <button class=\"answer-li\" id=\"#answer-b\"></button>\r\n+            <button class=\"answer-li\" id=\"#answer-c\"></button>\r\n+            <button class=\"answer-li\" id=\"#answer-d\"></button>\r\n       </form>\r\n     </div>\r\n   </main>\r\n \r\n"
+                },
+                {
+                    "date": 1637612701044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,12 @@\n       <div class=\"question\">\r\n \r\n       </div>\r\n       <form class=\"answer-form\">\r\n-            <button class=\"answer-li\" id=\"#answer-a\"></button>\r\n-            <button class=\"answer-li\" id=\"#answer-b\"></button>\r\n-            <button class=\"answer-li\" id=\"#answer-c\"></button>\r\n-            <button class=\"answer-li\" id=\"#answer-d\"></button>\r\n+        <button class=\"answer-li\" id=\"#answer-a\"></button>\r\n+        <button class=\"answer-li\" id=\"#answer-b\"></button>\r\n+        <button class=\"answer-li\" id=\"#answer-c\"></button>\r\n+        <button class=\"answer-li\" id=\"#answer-d\"></button>\r\n       </form>\r\n     </div>\r\n   </main>\r\n \r\n"
+                },
+                {
+                    "date": 1637613088879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,12 @@\n       <div class=\"question\">\r\n \r\n       </div>\r\n       <form class=\"answer-form\">\r\n-        <button class=\"answer-li\" id=\"#answer-a\"></button>\r\n-        <button class=\"answer-li\" id=\"#answer-b\"></button>\r\n-        <button class=\"answer-li\" id=\"#answer-c\"></button>\r\n-        <button class=\"answer-li\" id=\"#answer-d\"></button>\r\n+        <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n+        <button class=\"answer-button\" id=\"#answer-b\"></button>\r\n+        <button class=\"answer-button\" id=\"#answer-c\"></button>\r\n+        <button class=\"answer-button\" id=\"#answer-d\"></button>\r\n       </form>\r\n     </div>\r\n   </main>\r\n \r\n"
+                },
+                {
+                    "date": 1637620704158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,13 @@\n </head>\r\n \r\n <body>\r\n   <main>\r\n-    <div class=\"preamble\">\r\n-      You are about to take a coding quiz\r\n+    <div class=\"start\">\r\n+      You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n+      <button class=\"start-button\">START!</button>\r\n     </div>\r\n-    <div class=\"quiz-question-answerform\">\r\n+    <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n       </div>\r\n       <form class=\"answer-form\">\r\n"
+                },
+                {
+                    "date": 1637621324987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,11 @@\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n       </div>\r\n+      <div class=\"timer\">\r\n+        60\r\n+      </div>\r\n       <form class=\"answer-form\">\r\n         <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-b\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-c\"></button>\r\n"
+                },
+                {
+                    "date": 1637621547175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,11 @@\n         <button class=\"answer-button\" id=\"#answer-c\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-d\"></button>\r\n       </form>\r\n     </div>\r\n+    <div class=\"test-done\">\r\n+      <p>Your score:</p>\r\n+    </div>\r\n   </main>\r\n \r\n \r\n   <footer>\r\n"
+                },
+                {
+                    "date": 1637631630844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,16 +12,16 @@\n <body>\r\n   <main>\r\n     <div class=\"start\">\r\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n-      <button class=\"start-button\">START!</button>\r\n+      <button id=\"starterbutton\">START!</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n       </div>\r\n       <div class=\"timer\">\r\n-        60\r\n+        60.0\r\n       </div>\r\n       <form class=\"answer-form\">\r\n         <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-b\"></button>\r\n@@ -31,14 +31,17 @@\n     </div>\r\n     <div class=\"test-done\">\r\n       <p>Your score:</p>\r\n     </div>\r\n-  </main>\r\n-\r\n-\r\n+    <div class=\"leaderboard-list\">\r\n+  \r\n+    </div>\r\n+    <form>\r\n+      Enter your initials\r\n+    </form>\r\n+    </main>\r\n   <footer>\r\n-    <p>View Leader Board</p>\r\n-    <p>Established 2021</p>\r\n+    <button class=\"leaderboard-button\">View Leader Board</button>\r\n   </footer>  \r\n \r\n   <script src=\"./assets/js/script.js\"></script>\r\n </body>\r\n"
+                },
+                {
+                    "date": 1637631808472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n <body>\r\n   <main>\r\n     <div class=\"start\">\r\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n-      <button id=\"starterbutton\">START!</button>\r\n+      <button id=\"starter-button\">START!</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n"
+                },
+                {
+                    "date": 1637638082112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   <main>\r\n     <div class=\"start\">\r\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n       <button id=\"starter-button\">START!</button>\r\n+      <button id=\"step\">Click to Move</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n"
+                },
+                {
+                    "date": 1637638561204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n   <main>\r\n     <div class=\"start\">\r\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n       <button id=\"starter-button\">START!</button>\r\n-      <button id=\"step\">Click to Move</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n"
+                },
+                {
+                    "date": 1637639244701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\">\r\n \r\n       </div>\r\n-      <div class=\"timer\">\r\n+      <div id=\"timer\">\r\n         60.0\r\n       </div>\r\n       <form class=\"answer-form\">\r\n         <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n"
+                },
+                {
+                    "date": 1637646126091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </head>\r\n \r\n <body>\r\n   <main>\r\n-    <div class=\"start\">\r\n+    <div class=\"start\" id=\"intro\">\r\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n       <button id=\"starter-button\">START!</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n@@ -45,5 +45,6 @@\n \r\n   <script src=\"./assets/js/script.js\"></script>\r\n </body>\r\n \r\n+\r\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1637647093304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,15 @@\n       You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n       <button id=\"starter-button\">START!</button>\r\n     </div>\r\n     <div class=\"div-question-answerform\">\r\n-      <div class=\"question\">\r\n+      <div class=\"question\" id=\"presented-question\">\r\n \r\n       </div>\r\n-      <div id=\"timer\">\r\n+      <div class=\"question\" id=\"timer\">\r\n         60.0\r\n       </div>\r\n-      <form class=\"answer-form\">\r\n+      <form class=\"answer-form\" id=\"answer-list\">\r\n         <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-b\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-c\"></button>\r\n         <button class=\"answer-button\" id=\"#answer-d\"></button>\r\n"
+                },
+                {
+                    "date": 1637647123162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     <div class=\"div-question-answerform\">\r\n       <div class=\"question\" id=\"presented-question\">\r\n \r\n       </div>\r\n-      <div class=\"question\" id=\"timer\">\r\n+      <div id=\"timer\">\r\n         60.0\r\n       </div>\r\n       <form class=\"answer-form\" id=\"answer-list\">\r\n         <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n"
+                },
+                {
+                    "date": 1637647353758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,12 @@\n       <div id=\"timer\">\r\n         60.0\r\n       </div>\r\n       <form class=\"answer-form\" id=\"answer-list\">\r\n-        <button class=\"answer-button\" id=\"#answer-a\"></button>\r\n-        <button class=\"answer-button\" id=\"#answer-b\"></button>\r\n-        <button class=\"answer-button\" id=\"#answer-c\"></button>\r\n-        <button class=\"answer-button\" id=\"#answer-d\"></button>\r\n+        <button class=\"answer-button\" id=\"answer-a\"></button>\r\n+        <button class=\"answer-button\" id=\"answer-b\"></button>\r\n+        <button class=\"answer-button\" id=\"answer-c\"></button>\r\n+        <button class=\"answer-button\" id=\"answer-d\"></button>\r\n       </form>\r\n     </div>\r\n     <div class=\"test-done\">\r\n       <p>Your score:</p>\r\n"
+                },
+                {
+                    "date": 1637649123909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,14 +21,14 @@\n       </div>\r\n       <div id=\"timer\">\r\n         60.0\r\n       </div>\r\n-      <form class=\"answer-form\" id=\"answer-list\">\r\n+      <div class=\"answer-form\" id=\"answer-list\"> <!-- this isn't really a form; change to div -->\r\n         <button class=\"answer-button\" id=\"answer-a\"></button>\r\n         <button class=\"answer-button\" id=\"answer-b\"></button>\r\n         <button class=\"answer-button\" id=\"answer-c\"></button>\r\n         <button class=\"answer-button\" id=\"answer-d\"></button>\r\n-      </form>\r\n+      </div>\r\n     </div>\r\n     <div class=\"test-done\">\r\n       <p>Your score:</p>\r\n     </div>\r\n"
                 }
             ],
             "date": 1637611543007,

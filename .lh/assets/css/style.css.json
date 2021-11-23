@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1637610506687,
@@ -12,6 +12,70 @@
                 {
                     "date": 1637611605762,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,5 @@\n     --primary: #44e9ff;\r\n     --secondary: #497980;\r\n     --tertiary: rgb(192, 246, 253);\r\n     --grey: #333;\r\n-    font-size: 62.5%;\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1637612349051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,29 @@\n+:root {\r\n+  --primary: #44e9ff;\r\n+  --secondary: #497980;\r\n+  --tertiary: rgb(192, 246, 253);\r\n+  --grey: #333;\r\n+\r\n+\r\n+  --regular-line-width: 4px;\r\n+\r\n+  --border-radius-regular: 25%;\r\n\\ No newline at end of file\n+}\r\n+\r\n * {\r\n     box-sizing: border-box;\r\n+    font-size: 14px;\r\n   }\r\n   \r\n-  :root {\r\n-    --primary: #44e9ff;\r\n-    --secondary: #497980;\r\n-    --tertiary: rgb(192, 246, 253);\r\n-    --grey: #333;\r\n-  }\n+.main {\r\n+    width: 300px;\r\n+}\r\n+\r\n+.answer-form {\r\n+    margin: 20px;\r\n+    border: var(--regular-line-width) solid var(--primary);\r\n+    border-radius: var(--border-radius-regular);\r\n+    padding: 30px;\r\n+}\r\n+\r\n+.answer-li \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1637612661317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,16 +14,23 @@\n     box-sizing: border-box;\r\n     font-size: 14px;\r\n   }\r\n   \r\n-.main {\r\n+main {\r\n     width: 300px;\r\n }\r\n \r\n .answer-form {\r\n     margin: 20px;\r\n     border: var(--regular-line-width) solid var(--primary);\r\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n+    display: flex;\r\n+    flex-direction: column;\r\n\\ No newline at end of file\n }\r\n \r\n-.answer-li \n+.answer-li {\r\n+    border: var(--regular-line-width) solid var(--secondary);\r\n+    border-radius: var(--border-radius-regular);\r\n+    padding: 30px;\r\n+    display: flex;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1637612846417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,14 @@\n main {\r\n     width: 300px;\r\n }\r\n \r\n+.question {\r\n+    border: var(--regular-line-width) solid var(--tertiary);\r\n+    border-radius: var(--border-radius-regular);\r\n+    padding: 30px;\r\n+}\r\n+\r\n .answer-form {\r\n     margin: 20px;\r\n     border: var(--regular-line-width) solid var(--primary);\r\n     border-radius: var(--border-radius-regular);\r\n"
+                },
+                {
+                    "date": 1637613088878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n     display: flex;\r\n     flex-direction: column;\r\n }\r\n \r\n-.answer-li {\r\n+.answer-button {\r\n     border: var(--regular-line-width) solid var(--secondary);\r\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n-    display: flex;\r\n+    margin: 10px;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1637620484981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,13 @@\n main {\r\n     width: 300px;\r\n }\r\n \r\n+.start {\r\n+    background-color: var(--primary);\r\n+    \r\n+}\r\n+\r\n .question {\r\n     border: var(--regular-line-width) solid var(--tertiary);\r\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n"
+                },
+                {
+                    "date": 1637620704157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,17 @@\n }\r\n \r\n .start {\r\n     background-color: var(--primary);\r\n-    \r\n+    border: var(--regular-line-width) solid var(--tertiary);\r\n+    border-radius: var(--border-radius-regular);\r\n+    padding: 30px;\r\n }\r\n \r\n+.div-question-answerform {\r\n+    display: none;\r\n+}\r\n+\r\n .question {\r\n     border: var(--regular-line-width) solid var(--tertiary);\r\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n"
+                },
+                {
+                    "date": 1637621324985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,15 @@\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n }\r\n \r\n+.timer {\r\n+    background-color: black;\r\n+    font-style: \"Monotron\";\r\n+    font-size: 45px;\r\n+    color: red;\r\n+}\r\n+\r\n .answer-form {\r\n     margin: 20px;\r\n     border: var(--regular-line-width) solid var(--primary);\r\n     border-radius: var(--border-radius-regular);\r\n"
+                },
+                {
+                    "date": 1637621394183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     background-color: black;\r\n     font-style: \"Monotron\";\r\n     font-size: 45px;\r\n     color: red;\r\n+    text-align:center;\r\n }\r\n \r\n .answer-form {\r\n     margin: 20px;\r\n"
+                },
+                {
+                    "date": 1637621429591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     padding: 30px;\r\n }\r\n \r\n .div-question-answerform {\r\n-    display: none;\r\n+    /* display: none; */\r\n }\r\n \r\n .question {\r\n     border: var(--regular-line-width) solid var(--tertiary);\r\n"
+                },
+                {
+                    "date": 1637639745587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n }\r\n \r\n-.timer {\r\n+#timer {\r\n     background-color: black;\r\n     font-style: \"Monotron\";\r\n     font-size: 45px;\r\n     color: red;\r\n"
+                },
+                {
+                    "date": 1637644741180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n   }\r\n   \r\n main {\r\n     width: 300px;\r\n+    padding-left: 30px;\r\n }\r\n \r\n .start {\r\n     background-color: var(--primary);\r\n"
+                },
+                {
+                    "date": 1637644763905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   }\r\n   \r\n main {\r\n     width: 300px;\r\n-    padding-left: 30px;\r\n+    margin-left: 30px;\r\n }\r\n \r\n .start {\r\n     background-color: var(--primary);\r\n"
+                },
+                {
+                    "date": 1637644840530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n }\r\n \r\n * {\r\n     box-sizing: border-box;\r\n-    font-size: 14px;\r\n+    font-size: 20px;\r\n   }\r\n   \r\n main {\r\n     width: 300px;\r\n"
+                },
+                {
+                    "date": 1637645521224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,12 @@\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n }\r\n \r\n+.start-display-none {\r\n+    display:none;\r\n+}\r\n+\r\n .div-question-answerform {\r\n     /* display: none; */\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1637645840732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,11 +26,11 @@\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n }\r\n \r\n-.start-display-none {\r\n+/* .start-display-none {\r\n     display:none;\r\n-}\r\n+} */\r\n \r\n .div-question-answerform {\r\n     /* display: none; */\r\n }\r\n"
+                },
+                {
+                    "date": 1637646400677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,8 @@\n     border-radius: var(--border-radius-regular);\r\n     padding: 30px;\r\n }\r\n \r\n-/* .start-display-none {\r\n-    display:none;\r\n-} */\r\n-\r\n .div-question-answerform {\r\n     /* display: none; */\r\n }\r\n \r\n"
                 }
             ],
             "date": 1637610506687,

@@ -11,39 +11,40 @@
 
 <body>
   <main>
-    <div class="preamble">
-      You are about to take a coding quiz
+    <div class="start" id="intro">
+      You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!
+      <button id="starter-button">START!</button>
     </div>
-    <div class="quiz-question-answerform">
-      <div class="question">
+    <div class="div-question-answerform">
+      <div class="question" id="presented-question">
 
       </div>
-      <form class="answer-form">
-        <ol>
-          <li class="answer-li">
-            <button id="#answer-a"></button>
-          </li>
-          <li class="answer-li">
-            <button id="#answer-b"></button>
-          </li>
-          <li class="answer-li">
-            <button id="#answer-c"></button>
-          </li>
-          <li class="answer-li">
-            <button id="#answer-d"></button>
-          </li>
-        </ol>
-      </form>
+      <div id="timer">
+        60.0
+      </div>
+      <div class="answer-form" id="answer-list"> <!-- this isn't really a form; change to div -->
+        <button class="answer-button" id="answer-a"></button>
+        <button class="answer-button" id="answer-b"></button>
+        <button class="answer-button" id="answer-c"></button>
+        <button class="answer-button" id="answer-d"></button>
+      </div>
     </div>
-  </main>
-
-
+    <div class="test-done">
+      <p>Your score:</p>
+    </div>
+    <div class="leaderboard-list">
+  
+    </div>
+    <form>
+      Enter your initials
+    </form>
+    </main>
   <footer>
-    <p>View Leader Board</p>
-    <p>Established 2021</p>
+    <button class="leaderboard-button">View Leader Board</button>
   </footer>  
 
   <script src="./assets/js/script.js"></script>
 </body>
+
 
 </html>
