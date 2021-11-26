@@ -14,8 +14,28 @@ var quizTimeIsUp = false;
 // questions array; many thanks to Joanne Chun for writing most of these
 var questions = [{
     question:"Can you use double quotes or single quotes to designate a string?",
-    answers: ["Double quotes only", "Single quotes only", "Neither can be used"],
+    answers: ["Double quotes only", "Single quotes only", "Neither can be used", "Either can be used"],
     correctAnswer: "Either can be used",
+    author: "Stuart"
+},{
+    question:"What does API mean?",
+    answers: ["After Planned Intervention", "Application Programming Interface", "Alert Potential Interference", "Apple Poster Ink"],
+    correctAnswer: "Application Programming Interface",
+    author: "Stuart"
+},{
+    question:"What is Primitive Data?",
+    answers: ["Data that has not be validated", "A variable that has not been set", "A band that is popular in Silicon Valley", "Data that only holds one value, such as a string, number, or Boolean"],
+    correctAnswer: "Data that only holds one value, such as a string, number, or Boolean",
+    author: "Stuart"
+},{
+    question:"Is jQuery a framework or a programming language?",
+    answers: ["A framework only", "A programming language only", "Neither", "Both"],
+    correctAnswer: "A framework only",
+    author: "Stuart"
+},{
+    question:"What is event delegation?",
+    answers: ["In git, a subbranch that is used for testing only", "In git, assigning an issue to a particular team member", "Using a parent element to handle events that occur on a child element", "A looping subroutine"],
+    correctAnswer: "Using a parent element to handle events that occur on a child element",
     author: "Stuart"
 },{
     question:"What do all HTML documents start with?",
@@ -65,6 +85,27 @@ Variable for score
 Variables for stopping different processes
 */
 
+// write shuffle function(array); return shuffled array
+
+var createShuffledArray = function(newArrayLength,sourceArray) {
+
+    // bring random function from password project
+
+    if (newArrayLength >= 1 && newArrayLength <= sourceArray.length) {// what happens if passed-in item is not a number?
+        // create var workingArray to collect values
+        // for loop pull at random and shorten
+            // random number up to current source array length
+            // add that value into a new array
+            // take that value out of the source array (splice command) // this doesn't need to happen on last loop
+        // return workingArray
+
+    } else {
+        console.log("passed in array length isn't right")
+        return false;
+    }
+}
+
+
 
 
 var timerCountdown = function(){
@@ -79,7 +120,7 @@ var timerCountdown = function(){
         timer = timer-0.1;
         if (timer <= 0) {
             quizTimeIsUp = true;
-            timerDisplay.innerHTML = "out of time"; // this line doesn't work for some reason
+            timerDisplay.innerHTML = "out of time"; // this line doesn't work for some reason // use textContent
             clearInterval(timerDecrement);
         }
         timerDisplay.innerHTML = timer.toFixed(1);
@@ -96,6 +137,8 @@ var quizProcess = function() {
     timerCountdown();
     // get questions / answers
     questionDiv.innerHTML = questions[0].question;
+    // need to shuffle order of answers
+    // should we use .textContent because .innerHTML is "dangerous"?
     answerA.innerHTML = questions[0].answers[0];
     answerB.innerHTML = questions[0].answers[1];
     answerC.innerHTML = questions[0].answers[2];
@@ -111,19 +154,24 @@ var quizProcess = function() {
 }
 
 
-//Listen for start button: start upon click
+// display intro and Listen for start button: start upon click
 // delete console.log("click worked here");
-startButton.addEventListener("click", quizProcess);
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXX startButton.addEventListener("click", quizProcess);
 
 
 /*    
-    begin asking questions
+    Select 5 questions
+    For each question,
+        accept an answer
+        display Correct! or Wrong!
+        wrong answers reduce clock
+        bring up next question .5 seconds
+    Score is the amount of time left on the clock
 	Check the clock frequently and end game when it expires
 		End game is just taking the ability to answer away
-	Check answers
-		If correct, add to score and show green
-		If incorrect, reduce time left and show red
-    bring up next question .5 seconds
+	
+		
 When game ends
 	Offer ability to record high score
 		Store and retrieve high scores

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "index old.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1637951568616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1637951568616,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n  <title>Coding Quiz</title>\r\n  <link rel=\"stylesheet\" href=\"./assets/css/style.css\">\r\n</head>\r\n\r\n<body>\r\n  <main>\r\n    <div class=\"start\" id=\"intro\">\r\n      You are about to take a very difficult, time-controlled coding quiz.  Do you have the chops?  We'll find out!!\r\n      <button id=\"starter-button\">START!</button>\r\n    </div>\r\n    <div class=\"div-question-answerform\">\r\n      <div class=\"question\" id=\"presented-question\">\r\n\r\n      </div>\r\n      <div id=\"timer\">\r\n        60.0\r\n      </div>\r\n      <div class=\"answer-form\" id=\"answer-list\"> <!-- this isn't really a form; change to div -->\r\n        <button class=\"answer-button\" id=\"answer-a\"></button>\r\n        <button class=\"answer-button\" id=\"answer-b\"></button>\r\n        <button class=\"answer-button\" id=\"answer-c\"></button>\r\n        <button class=\"answer-button\" id=\"answer-d\"></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"test-done\">\r\n      <p>Your score:</p>\r\n    </div>\r\n    <div class=\"leaderboard-list\">\r\n  \r\n    </div>\r\n    <form>\r\n      Enter your initials\r\n    </form>\r\n    </main>\r\n  <footer>\r\n    <button class=\"leaderboard-button\">View Leader Board</button>\r\n  </footer>  \r\n\r\n  <script src=\"./assets/js/script.js\"></script>\r\n</body>\r\n\r\n\r\n</html>"
+        }
+    ]
+}
