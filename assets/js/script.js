@@ -12,12 +12,14 @@ var answerD = document.getElementById("answer-d");
 var correctAnswerIs = "";
 var correctOrWrong = document.getElementById("correct-or-wrong");
 const numberOfQuestions = 5;
-var questionCounter = 0;
-const initialTime = 3.0;
+var questionCounter = 0; 
+const initialTime = 30.0;
+const delayTime = 500;
 var timer = initialTime;
 var quizTimeIsUp = false;
 
 // questions array; many thanks to Joanne Chun for writing most of these
+// IMPORTANT: correctAnswer field is matched with id of question button to determine whether answer is correct; don't change one without changing the other
 var questions = [{
     question:"Can you use double quotes or single quotes to designate a string?",
     answers: ["Double quotes only", "Single quotes only", "Neither can be used", "Either can be used"],
@@ -109,60 +111,100 @@ var createShuffledIndexArray = function() {
     }
 };
 
+// MOVE INSIDE QUIZPROCESS timerCountdown runs concurrently with calls to displayQuestions and processAnswer; it calls processScore if time runs out
 var timerCountdown = function(){
     //debugger;
     
     // reduce timer variable by 0.1
+    // TODO erroneous? for some reason the timer variable ends up negative by the number of wrong answers
     var decreaseTimerVariable = function() {
-        timer = timer-0.1;
-        if (timer <= 0) {
-            quizTimeIsUp = true;
-            timerDisplay.textContent = "out of time"; // this line doesn't work for some reason // use textContent
-            clearInterval(timerDecrement); 
-        }
-        // TODO add clearInterval(timerDecrement) here if last answer has been selected
-        timerDisplay.textContent = "Time: " + timer.toFixed(1);
+        if (questionCounter < numberOfQuestions) {
+            timer = timer-0.1;
+            if (timer > 0) {
+                timerDisplay.textContent = "Time: " + timer.toFixed(1);
+            } else {
+                timerDisplay.textContent = "Time: 0.0";
+                // if user runs out of time, stop the timer
+                clearInterval(timerDecrement); 
+            }
+        } else {
+            // if the last question has been answered, stop the timer
+            clearInterval(timerDecrement);
+        };
     };
     // call reduction of timer variable each one tenth of a second
     var timerDecrement = setInterval(decreaseTimerVariable,100);
 };
 
-var displayQuestions = function(i){
-    // display questions / answers
-    questionDiv.textContent = questions[workingArrayForShuffling[i]].question;
-    answerA.textContent = questions[workingArrayForShuffling[i]].answers[0];
-    answerB.textContent = questions[workingArrayForShuffling[i]].answers[1];
-    answerC.textContent = questions[workingArrayForShuffling[i]].answers[2];
-    answerD.textContent = questions[workingArrayForShuffling[i]].answers[3];
-    correctAnswerIs = questions[workingArrayForShuffling[i]].correctAnswer;
-}
-
 
 var quizProcess = function() {
     
+    var displayQuestions = function(i){
+        // display questions / answers
+        questionDiv.textContent = questions[workingArrayForShuffling[i]].question;
+        answerA.textContent = questions[workingArrayForShuffling[i]].answers[0];
+        answerB.textContent = questions[workingArrayForShuffling[i]].answers[1];
+        answerC.textContent = questions[workingArrayForShuffling[i]].answers[2];
+        answerD.textContent = questions[workingArrayForShuffling[i]].answers[3];
+        correctAnswerIs = questions[workingArrayForShuffling[i]].correctAnswer;
+        answerForm.addEventListener("click", processAnswer); 
+    }
+    
     var processAnswer = function(evt){
+        answerForm.removeEventListener("click", processAnswer);
         console.log("answerForm clicked");
         console.log(evt.target.textContent);
         console.log(evt.target.id);
         questionCounter++;
-        if (correctAnswerIs == evt.target.id) {
-            console.log("answer is correct");
-            // turn off listener
-            // bring up next question
-        } else {
-            console.log("answer is wrong");
-            // turn off listener
-            // bring up next question
-        }
-        //if (evt.target.textContent == questions)
-            // if answer is correct else 
-            // need to make sure user can only click once; turn off listener
-            // Remove the event handler from <div>
-// answerForm.removeEventListener("click", processAnswer); 
-        if (questionCounter = numberOfQuestions - 1) {
-            //stop answering questions; stop timer
-        }
-    }
+        
+        if (questionCounter < numberOfQuestions) {
+            console.log("keep going");
+            
+            if (correctAnswerIs == evt.target.id) {
+                console.log("answer is correct");
+                // answerForm.removeEventListener("click", processAnswer); 
+                // display correctOrWrong
+                correctOrWrong.textContent = "Correct!"
+                // bring up next question after short delay
+                setTimeout(function(){
+                    console.log("this is delayed")
+                    displayQuestions(questionCounter);
+                },2000);
+            } else {
+                console.log("answer is wrong");
+                // answerForm.removeEventListener("click", processAnswer); 
+                // display correctOrWrong
+                correctOrWrong.textContent = "Wrong!"
+                timer = timer - 10;
+
+                // bring up next question after longer delay
+                setTimeout(function(){
+                    console.log("this is delayed")
+                    displayQuestions(questionCounter);
+                },2000);
+                displayQuestions(questionCounter);
+            }
+                        
+        } else { //stop answering questions; stop timer
+            console.log("out of questions");
+            if (correctAnswerIs == evt.target.id) {
+                console.log("answer is correct");
+                // answerForm.removeEventListener("click", processAnswer); 
+                // display correctOrWrong
+                correctOrWrong.textContent = "Correct!"
+                // bring up next question after short delay
+                processScore();
+            } else {
+                console.log("answer is wrong");
+                // answerForm.removeEventListener("click", processAnswer); 
+                // display correctOrWrong
+                correctOrWrong.textContent = "Wrong!"
+                timer = timer - 10;
+                // bring up next question after longer delay
+                processScore();
+            };
+        };
+    };
 
     // hide the intro
     // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX document.getElementById("start").style.display = "none";
@@ -173,6 +215,12 @@ var quizProcess = function() {
     // processAnswer();
             
 };
+
+var processScore = function(){
+    // hide quiz panel
+    console.log("time to processScore");
+    console.log( timer );
+}
 
 createShuffledIndexArray();
 startButton.addEventListener("click", quizProcess);
