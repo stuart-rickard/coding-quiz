@@ -1,8 +1,18 @@
+var highScoresArray = "";
+const blankHighScoresArray = [{initials: "--", score: 0},
+{initials: "--", score: 0},
+{initials: "--", score: 0},
+{initials: "--", score: 0},
+{initials: "--", score: 0}
+];
+const numberOfHighScores = blankHighScoresArray.length;
 var startButton = document.getElementById('starter-button');
 var timerDisplay = document.getElementById("timer");
 //var startDiv = document.getElementsByClassName("start");
 var questionDiv = document.getElementById("presented-question");
 var answerForm = document.getElementById("answer-list");
+var scoreDisplay = document.getElementById("score-display");
+var initialsInput = document.getElementById("initials-input");
 var goBackButton = document.getElementById("go-back");
 var clearHighScoresButton = document.getElementById("clear-scores");
 var answerA = document.getElementById("answer-a");
@@ -14,7 +24,8 @@ var correctOrWrong = document.getElementById("correct-or-wrong");
 const numberOfQuestions = 5;
 var questionCounter = 0; 
 const initialTime = 30.0;
-const delayTime = 500;
+var stopTimer = false;
+const delayTime = 1000;
 var timer = initialTime;
 var quizTimeIsUp = false;
 
@@ -113,12 +124,13 @@ var createShuffledIndexArray = function() {
 
 // MOVE INSIDE QUIZPROCESS timerCountdown runs concurrently with calls to displayQuestions and processAnswer; it calls processScore if time runs out
 var timerCountdown = function(){
+    // TODO add stopTimer = true test
     //debugger;
     
     // reduce timer variable by 0.1
     // TODO erroneous? for some reason the timer variable ends up negative by the number of wrong answers
     var decreaseTimerVariable = function() {
-        if (questionCounter < numberOfQuestions) {
+        if ( questionCounter < numberOfQuestions && stopTimer == false ) {
             timer = timer-0.1;
             if (timer > 0) {
                 timerDisplay.textContent = "Time: " + timer.toFixed(1);
@@ -141,6 +153,7 @@ var quizProcess = function() {
     
     var displayQuestions = function(i){
         // display questions / answers
+        // hide correct or wrong
         questionDiv.textContent = questions[workingArrayForShuffling[i]].question;
         answerA.textContent = questions[workingArrayForShuffling[i]].answers[0];
         answerB.textContent = questions[workingArrayForShuffling[i]].answers[1];
@@ -151,6 +164,7 @@ var quizProcess = function() {
     }
     
     var processAnswer = function(evt){
+        // debugger;
         answerForm.removeEventListener("click", processAnswer);
         console.log("answerForm clicked");
         console.log(evt.target.textContent);
@@ -165,25 +179,34 @@ var quizProcess = function() {
                 // answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Correct!"
-                // bring up next question after short delay
-                setTimeout(function(){
-                    console.log("this is delayed")
-                    displayQuestions(questionCounter);
-                },2000);
+                // bring up next question after delay
+                if (timer <= delayTime / 1000){
+                    stopTimer = true;
+                    setTimeout(processScore(),delayTime);
+                } else {
+                    setTimeout(function(){
+                        console.log("this is delayed")
+                        displayQuestions(questionCounter);
+                    },delayTime);
+                };
             } else {
                 console.log("answer is wrong");
                 // answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
                 timer = timer - 10;
-
-                // bring up next question after longer delay
-                setTimeout(function(){
-                    console.log("this is delayed")
-                    displayQuestions(questionCounter);
-                },2000);
-                displayQuestions(questionCounter);
-            }
+                if (timer <= delayTime / 1000){
+                    stopTimer = true;
+                    setTimeout(processScore(),delayTime);
+                } else {
+                    // bring up next question
+                    setTimeout(function(){
+                        console.log("this is delayed")
+                        displayQuestions(questionCounter);
+                    },delayTime);
+                };
+                //displayQuestions(questionCounter);
+            };
                         
         } else { //stop answering questions; stop timer
             console.log("out of questions");
@@ -192,16 +215,18 @@ var quizProcess = function() {
                 // answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Correct!"
+                stopTimer = true;
                 // bring up next question after short delay
-                processScore();
+                setTimeout(processScore(),delayTime);
             } else {
                 console.log("answer is wrong");
                 // answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
                 timer = timer - 10;
+                stopTimer = true;
                 // bring up next question after longer delay
-                processScore();
+                setTimeout(processScore(),delayTime);
             };
         };
     };
@@ -220,7 +245,52 @@ var processScore = function(){
     // hide quiz panel
     console.log("time to processScore");
     console.log( timer );
+    console.log(questionCounter);
+    console.log(questionShuffledIndex);
+    if (timer < 0) { timer = 0 };
+    scoreDisplay.textContent = "Your final score is " + timer.toFixed(1) + ".";
+
+    // high scores handler
 }
+
+// // download high scores
+//     first thing that happens
+//     find the File
+//     parse it to an Array
+//     Fill array to 10 scores with blanks if necessary
+var downloadHighScores = function(){
+    var localStorageDownload = localStorage.getItem("quizGameScores");
+    if ( localStorageDownload !== null ){
+        highScoresArray = JSON.parse(localStorageDownload);
+    } else {
+        localStorage.setItem("quizGameScores", JSON.stringify(highScoresArray));
+    };
+}
+
+// // upload high scores
+//     use json function
+//     save to localStorage
+//     call this when a new high score is recorded
+var uploadHighScores = function(){
+    localStorage.setItem("quizGameScores", JSON.stringify(highScoresArray));
+}
+
+// // accept score entry into a temp array
+//     compare score to highest then next highest
+//     splice in at the appropriate point
+
+
+// XXXXXXXXXXXXXXXXvar updateHighScoresArray = function(initials,score){
+//     for ( i = 0 ; i < numberOfHighScores ; i++ ){
+//         if ( score < highScoresArray[i].score ) {
+//             highScoresArray.splice.initials[i] = initials;
+//             highScoresArray.splice.score[i] = score;
+//             highScoresArray. // pop last array item
+//             uploadHighScores();
+//         };
+//     };
+// };
+
 
 createShuffledIndexArray();
 startButton.addEventListener("click", quizProcess);
@@ -230,17 +300,16 @@ goBackButton.addEventListener("click", function(){console.log("go back button")}
 clearHighScoresButton.addEventListener("click", function(){console.log("clear high scores button")});
 
 
+
+
+
 /*    
     +Intro
-    Select 5 questions
+    +Select 5 questions
     +Display question and open event listener
-        accept an answer
-        display Correct! or Wrong!
-        wrong answers reduce clock
-        bring up next question .5 seconds
-    Score is the amount of time left on the clock
-	Check the clock frequently and end game when it expires
-	Show score
+    +Score is the amount of time left on the clock
+	+Check the clock frequently
+	+Show score
 	Offer ability to record high score
 		Store and retrieve high scores
 	Offer "play again?"

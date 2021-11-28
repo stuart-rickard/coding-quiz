@@ -26,7 +26,7 @@
             <div class="col-2"></div> <!-- spacer column -->
             <div class="col-8">
                 <h1>Coding Quiz Challenge</h1>
-                <p>Try to answer the following brilliant code-related queries within the time limit.</p>
+                <p>Try to answer the following head-scratching code-related queries within the time limit.</p>
                 <p>Always stay cognizant that incorrect answers will reduce your time available by ten seconds; this also reduces your score by ten!</p>
                 <button id="starter-button">Start Quiz</button>
             </div> 
@@ -51,16 +51,56 @@
         <div class="row initials">
             <div class="col-2"></div> <!-- spacer column -->
             <div class="col-9">
-                <h1>All done!</h1>>
-                <p>Your final score is XX</p>
-                <input class="form-control" type="text" placeholder="Default input"> <!--label="Enter initials:" -->
+                <h1>All done!</h1>
+                <p id="score-display">not loaded</p>
+                <form>
+                  <label for="initials-input">Enter initials:</label>
+                  <input class="form-control" id="initials-input" type="text" placeholder="Default input">
+                  <input type="submit" value="Submit">
+                </form>
             </div>
         </div>
         <div class="row high-scores">
             <div class="col-2"></div> <!-- spacer column -->
-            <div class="col-9">
-                <h1>High scores</h1>>
+            <div class="col-5">
+                <h1>High scores</h1>
                 <!--list of scores-->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Initials</th>
+                      <th scope="col">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td id="hs1i">not loaded</td>
+                      <td is="hs1s">not loaded</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td id="hs2i">not loaded</td>
+                      <td is="hs2s">not loaded</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td id="hs3i">not loaded</td>
+                      <td is="hs3s">not loaded</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td id="hs4i">not loaded</td>
+                      <td is="hs4s">not loaded</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">5</th>
+                      <td id="hs5i">not loaded</td>
+                      <td is="hs5s">not loaded</td>
+                    </tr>
+                  </tbody>
+                </table>        
                 <button id="go-back">Go back</button>
                 <button id="clear-scores">Clear high scores</button>
             </div>
