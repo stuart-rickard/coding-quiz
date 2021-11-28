@@ -1,10 +1,10 @@
-var highScoresArray = "";
-const blankHighScoresArray = [{initials: "--", score: 0},
-{initials: "--", score: 0},
-{initials: "--", score: 0},
-{initials: "--", score: 0},
-{initials: "--", score: 0}
+const blankHighScoresArray = [{initials: "---", score: 0},
+{initials: "---", score: 0},
+{initials: "---", score: 0},
+{initials: "---", score: 0},
+{initials: "---", score: 0}
 ];
+var highScoresArray = blankHighScoresArray;
 const numberOfHighScores = blankHighScoresArray.length;
 var startButton = document.getElementById('starter-button');
 var timerDisplay = document.getElementById("timer");
@@ -253,18 +253,34 @@ var processScore = function(){
     // high scores handler
 }
 
+var updateHighScoresInDOM = function(){
+    document.getElementById("hs1i").innerText = highScoresArray[0].initials;
+    document.getElementById("hs1s").innerText = highScoresArray[0].score;
+    document.getElementById("hs2i").innerText = highScoresArray[1].initials;
+    document.getElementById("hs2s").innerText = highScoresArray[1].score;
+    document.getElementById("hs3i").innerText = highScoresArray[2].initials;
+    document.getElementById("hs3s").innerText = highScoresArray[2].score;
+    document.getElementById("hs4i").innerText = highScoresArray[3].initials;
+    document.getElementById("hs4s").innerText = highScoresArray[3].score;
+    document.getElementById("hs5i").innerText = highScoresArray[4].initials;
+    document.getElementById("hs5s").innerText = highScoresArray[4].score;
+}
+
+
 // // download high scores
 //     first thing that happens
 //     find the File
 //     parse it to an Array
 //     Fill array to 10 scores with blanks if necessary
 var downloadHighScores = function(){
+    debugger;
     var localStorageDownload = localStorage.getItem("quizGameScores");
     if ( localStorageDownload !== null ){
         highScoresArray = JSON.parse(localStorageDownload);
     } else {
         localStorage.setItem("quizGameScores", JSON.stringify(highScoresArray));
     };
+    updateHighScoresInDOM();
 }
 
 // // upload high scores
@@ -280,16 +296,17 @@ var uploadHighScores = function(){
 //     splice in at the appropriate point
 
 
-// XXXXXXXXXXXXXXXXvar updateHighScoresArray = function(initials,score){
-//     for ( i = 0 ; i < numberOfHighScores ; i++ ){
-//         if ( score < highScoresArray[i].score ) {
-//             highScoresArray.splice.initials[i] = initials;
-//             highScoresArray.splice.score[i] = score;
-//             highScoresArray. // pop last array item
-//             uploadHighScores();
-//         };
-//     };
-// };
+var updateHighScoresArray = function(initials,score){
+    for ( i = 0 ; i < numberOfHighScores ; i++ ){
+        if ( score > highScoresArray[i].score ) {
+            highScoresArray.splice(0,0,{initials: initials, score: score});
+            highScoresArray.pop();
+            uploadHighScores();
+            updateHighScoresInDOM();
+            i = numberOfHighScores;
+        };
+    };
+};
 
 
 createShuffledIndexArray();
