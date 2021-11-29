@@ -18,6 +18,7 @@ var questionDiv = document.getElementById("presented-question");
 var answerForm = document.getElementById("answer-list");
 var initialsDiv = document.getElementById("initials");
 var scoreDisplay = document.getElementById("score-display");
+var initialsForm = document.getElementById("initials-form");
 var initialsInput = document.getElementById("initials-input");
 var highScoresDiv = document.getElementById("high-scores");
 var goBackButton = document.getElementById("go-back");
@@ -29,7 +30,7 @@ var answerD = document.getElementById("answer-d");
 var correctOrWrong = document.getElementById("correct-or-wrong");
 
 var correctAnswerIs = "";
-const numberOfQuestions = 5;
+const numberOfQuestions = 1;
 var questionCounter = 0; // must reset with new quiz
 const initialTime = 30.0;
 var timer = initialTime; // must reset with new quiz
@@ -109,8 +110,8 @@ const totalNumberOfAvailableQuestions = questions.length;
 var workingArrayForShuffling = []; // this array is set up in the following for loop // must reset with new quiz
 for (i=0; i<totalNumberOfAvailableQuestions; i++) {
     workingArrayForShuffling.push(i);
-}
-var questionShuffledIndex = [];
+} // must reset with new quiz
+var questionShuffledIndex = []; // must reset with new quiz
 
 // create array that is used to select questions at random
 var createShuffledIndexArray = function() {
@@ -121,7 +122,7 @@ var createShuffledIndexArray = function() {
     for (i=0; i < numberOfQuestions; i++) {
         var selectedIndex = getRandomNumberFromTo(0,(workingArrayForShuffling.length-1));
         questionShuffledIndex.push(workingArrayForShuffling[selectedIndex]);
-        workingArrayForShuffling.splice(selectedIndex,1);
+        workingArrayForShuffling.splice(selectedIndex,1);        
     }
 };
 
@@ -147,6 +148,7 @@ var quizProcess = function() {
                     timerDisplay.style.backgroundColor = "red";
                     // if user runs out of time, stop decrementing the timer
                     clearInterval(timerDecrement); 
+                    processScore();
                 }
             } else {
                 // if the last question has been answered or stopTimer is true, stop decrementing the timer
@@ -158,26 +160,30 @@ var quizProcess = function() {
     };
 
     var processAnswer = function(evt){
-        // debugger;
         answerForm.removeEventListener("click", processAnswer);
+
         console.log("answerForm clicked");
         console.log(evt.target.textContent);
         console.log(evt.target.id);
         questionCounter++;
+        //debugger;
         
         if (questionCounter < numberOfQuestions) {
             console.log("keep going");
             
             if (correctAnswerIs == evt.target.id) {
                 console.log("answer is correct");
-                // answerForm.removeEventListener("click", processAnswer); 
+                answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
-                correctOrWrong.textContent = "Correct!"
-                // bring up next question after delay
+                correctOrWrong.textContent = "Correct!";
+                correctOrWrong.style.display = "block";
+        
                 if (timer <= delayTime / 1000){
                     stopTimer = true;
+                    timer = 0;
                     setTimeout(processScore(),delayTime);
                 } else {
+                    // bring up next question after delay
                     setTimeout(function(){
                         console.log("this is delayed")
                         displayQuestions(questionCounter);
@@ -185,12 +191,14 @@ var quizProcess = function() {
                 };
             } else {
                 console.log("answer is wrong");
-                // answerForm.removeEventListener("click", processAnswer); 
+                answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
+                correctOrWrong.style.display = "block";
                 timer = timer - 10;
                 if (timer <= delayTime / 1000){
                     stopTimer = true;
+                    timer = 0;
                     setTimeout(processScore(),delayTime);
                 } else {
                     // bring up next question
@@ -199,24 +207,25 @@ var quizProcess = function() {
                         displayQuestions(questionCounter);
                     },delayTime);
                 };
-                //displayQuestions(questionCounter);
             };
                         
-        } else { //stop answering questions; stop timer
+        } else { //number of questions limit is reached; stop timer
             console.log("out of questions");
             if (correctAnswerIs == evt.target.id) {
                 console.log("answer is correct");
-                // answerForm.removeEventListener("click", processAnswer); 
+                answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Correct!"
+                correctOrWrong.style.display = "block";
                 stopTimer = true;
-                // bring up next question after short delay
+                // bring up processScore after short delay
                 setTimeout(processScore(),delayTime);
             } else {
                 console.log("answer is wrong");
-                // answerForm.removeEventListener("click", processAnswer); 
+                answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
+                correctOrWrong.style.display = "block";
                 timer = timer - 10;
                 stopTimer = true;
                 // bring up next question after longer delay
@@ -228,18 +237,18 @@ var quizProcess = function() {
     var displayQuestions = function(i){
         // display questions / answers
         // TODO hide correct or wrong
-        questionDiv.textContent = questions[workingArrayForShuffling[i]].question;
-        answerA.textContent = questions[workingArrayForShuffling[i]].answers[0];
-        answerB.textContent = questions[workingArrayForShuffling[i]].answers[1];
-        answerC.textContent = questions[workingArrayForShuffling[i]].answers[2];
-        answerD.textContent = questions[workingArrayForShuffling[i]].answers[3];
-        correctAnswerIs = questions[workingArrayForShuffling[i]].correctAnswer;
+        console.log(workingArrayForShuffling);
+        console.log(questionShuffledIndex);
+        correctOrWrong.style.display = "none";
+        questionDiv.textContent = questions[questionShuffledIndex[i]].question;
+        answerA.textContent = questions[questionShuffledIndex[i]].answers[0];
+        answerB.textContent = questions[questionShuffledIndex[i]].answers[1];
+        answerC.textContent = questions[questionShuffledIndex[i]].answers[2];
+        answerD.textContent = questions[questionShuffledIndex[i]].answers[3];
+        correctAnswerIs = questions[questionShuffledIndex[i]].correctAnswer;
         // Respond to clicks on answers
         answerForm.addEventListener("click", processAnswer); 
     }
-
-    // TODO hide the intro
-    // document.getElementById("start").style.display = "none";
 
     // Begin clock
     timerCountdown();
@@ -248,57 +257,67 @@ var quizProcess = function() {
 };
 
 var processScore = function(){
+    //debugger;
+    console.log( timer );
+    console.log(questionCounter);
+    if (timer < 0) { timer = 0 };
+    scoreDisplay.textContent = "Your final score is " + timer.toFixed(1) + ".";
     if (regularDisplay) {
         startDiv.style.display = "none";
         qAndADiv.style.display = "none";
         initialsDiv.style.display = "flex";
         highScoresDiv.style.display = "none";
     };
-    console.log("time to processScore");
-    console.log( timer );
-    console.log(questionCounter);
-    console.log(questionShuffledIndex);
-    timerDisplay.style.backgroundColor = "white";
-    if (timer < 0) { timer = 0 };
-    scoreDisplay.textContent = "Your final score is " + timer.toFixed(1) + ".";
-
-    // TODO accept initals
-    // TODO call displayHighScores
+    
+    // html calls displayHighScores
 }
 
+var goBackToStart = function(){
+    //debugger;
+    console.log("go back button");
+    // reset variables for new quiz
+    timerDisplay.style.backgroundColor = "white";
+    questionCounter = 0; 
+    timer = initialTime;
+    timerDisplay.textContent = "Time: " + timer.toFixed(1); 
+    stopTimer = false;
+    workingArrayForShuffling = []; 
+    for (i=0; i<totalNumberOfAvailableQuestions; i++) {
+        workingArrayForShuffling.push(i);
+    };
+    questionShuffledIndex = [];
+    createShuffledIndexArray(); 
+    
+    if (regularDisplay) {
+        startDiv.style.display = "flex";
+        qAndADiv.style.display = "none"; 
+        initialsDiv.style.display = "none"; 
+        highScoresDiv.style.display = "none"; 
+    };
+};
+//debugger;
+function handleForm(event) { event.preventDefault(); displayHighScores(); } 
+initialsForm.addEventListener('submit', handleForm);
+
 var displayHighScores = function(evt){
+    //debugger;
     // stop default behavior
-    evt.preventDefault;
+    //evt.preventDefault;
     console.log("display high scores");
     console.log(document.getElementById('initials-text').value);
-    // debugger;
+    var ini = document.getElementById('initials-text').value;
+    ini = ini.substring(0,3);
+
+    updateHighScoresArray(ini,timer.toFixed(1));
+    updateHighScoresInDOM();
+
     if (regularDisplay) {
         startDiv.style.display = "none";
         qAndADiv.style.display = "none";
         initialsDiv.style.display = "none";
         highScoresDiv.style.display = "flex";
     };
-
-    goBackButton.addEventListener("click", function(){
-        console.log("go back button");
-        questionCounter = 0; 
-        timer = initialTime; 
-        stopTimer = false; 
-        if (regularDisplay) {
-            startDiv.style.display = "flex";
-            qAndADiv.style.display = "none"; 
-            initialsDiv.style.display = "none"; 
-            highScoresDiv.style.display = "none"; 
-        };
-    });
-    clearHighScoresButton.addEventListener("click", function(){
-        console.log("clear high scores button");
-        highScoresArray = blankHighScoresArray;
-        updateHighScoresInDOM();
-        uploadHighScores();
-        window.alert("High scores have been cleared.")    
-    });
-}
+};
 
 var updateHighScoresInDOM = function(){
     document.getElementById("hs1i").innerText = highScoresArray[0].initials;
@@ -311,16 +330,15 @@ var updateHighScoresInDOM = function(){
     document.getElementById("hs4s").innerText = highScoresArray[3].score;
     document.getElementById("hs5i").innerText = highScoresArray[4].initials;
     document.getElementById("hs5s").innerText = highScoresArray[4].score;
-}
+};
 
 // High scores functions
 
 var uploadHighScores = function(){
     localStorage.setItem("quizGameScores", JSON.stringify(highScoresArray));
-}
+};
 
 var downloadHighScores = function(){
-    //debugger;
     var localStorageDownload = localStorage.getItem("quizGameScores");
     if ( localStorageDownload !== null ){
         highScoresArray = JSON.parse(localStorageDownload);
@@ -328,24 +346,41 @@ var downloadHighScores = function(){
         uploadHighScores();
     };
     updateHighScoresInDOM();
-}
+};
 
 var updateHighScoresArray = function(initials,score){
+    console.log(score);
     for ( i = 0 ; i < numberOfHighScores ; i++ ){
+        console.log(highScoresArray[i].score);
         if ( score > highScoresArray[i].score ) {
-            highScoresArray.splice(0,0,{initials: initials, score: score});
+            highScoresArray.splice(i,0,{initials: initials, score: score});
             highScoresArray.pop();
             uploadHighScores();
             updateHighScoresInDOM();
-            i = numberOfHighScores;
+            i = numberOfHighScores; // this ends the for loop
         };
     };
 };
 
+if (regularDisplay) {
+    startDiv.style.display = "flex";
+    qAndADiv.style.display = "none";
+    initialsDiv.style.display = "none";
+    highScoresDiv.style.display = "none";
+};
+
+timerDisplay.textContent = "Time: " + timer.toFixed(1);
 downloadHighScores();
 createShuffledIndexArray();
 startButton.addEventListener("click", quizProcess);
 viewHighScores.addEventListener("click", displayHighScores);
+goBackButton.addEventListener("click", goBackToStart);
+clearHighScoresButton.addEventListener("click", function(){
+    console.log("clear high scores button");
+    highScoresArray = blankHighScoresArray;
+    updateHighScoresInDOM();
+    uploadHighScores();
+});
 
 // TODO revise order of functions
 // fix question shuffling

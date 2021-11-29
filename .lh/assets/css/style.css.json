@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 21,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1637610506687,
@@ -92,6 +92,10 @@
                 {
                     "date": 1638140784146,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,37 @@\n+/* put it in the center of the page with a max width */\r\n+\r\n+:root {\r\n+  \r\n+}\r\n+\r\n+* {\r\n+    font-family: 'Source Sans Pro', sans-serif;\r\n+  }\r\n+  \r\n+main {\r\n+  \r\n+}\r\n+\r\n+.start {\r\n+    \r\n+}\r\n+\r\n+.div-question-answerform {\r\n+    /* display: none; */\r\n+}\r\n+\r\n+.question {\r\n+    \r\n+}\r\n+\r\n+#timer {\r\n+    \r\n+}\r\n+\r\n+.answer-form {\r\n+    \r\n+}\r\n+\r\n+/* .answer-button {\r\n+    \r\n+} */\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1638155672046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,42 @@\n+/* put it in the center of the page with a max width */\r\n+\r\n+:root {\r\n+  \r\n+}\r\n+\r\n+* {\r\n+    font-family: 'Source Sans Pro', sans-serif;\r\n+}\r\n+\r\n+/* startDiv.style.display = \"flex\";\r\n+qAndADiv.style.display = \"none\";\r\n+initialsDiv.style.display = \"none\";\r\n+highScoresDiv.style.display = \"none\"; */\r\n+\r\n+main {\r\n+    \r\n+}\r\n+\r\n+.start {\r\n+    \r\n+}\r\n+\r\n+.div-question-answerform {\r\n+    /* display: none; */\r\n+}\r\n+\r\n+.question {\r\n+    \r\n+}\r\n+\r\n+#timer {\r\n+    \r\n+}\r\n+\r\n+.answer-form {\r\n+    \r\n+}\r\n+\r\n+/* .answer-button {\r\n+    \r\n+} */\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1637610506687,

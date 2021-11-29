@@ -19,10 +19,11 @@
 </head>
 
 <body>
+  <!-- hide everything to start? -->
     <header class="row header mt-2">
         <div class="col-10 d-flex justify-content-between">
             <div class="ml-3" id="view-high-scores">View high scores</div>
-            <div id="timer">Time: timer</div>
+            <div id="timer">not loaded</div>
         </div>
     </header>
     <div class="container">
@@ -59,7 +60,7 @@
                 <p class="h4" id="score-display">not loaded</p>
                 <form id="initials-form">
                   Enter initials (3 characters): <input type="text" name="initials-entry" id="initials-text"><br>
-                  <input class="btn btn-primary" type="submit" onclick="displayHighScores()" value="Submit">
+                  <input class="btn btn-primary" type="submit" value="Submit"> <!--onclick="displayHighScores()" -->
                 </form>
                 <!-- <form>
                   <label for="initials-input">Enter initials (3 characters):</label>

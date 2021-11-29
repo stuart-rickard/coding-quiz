@@ -6,10 +6,15 @@
 
 * {
     font-family: 'Source Sans Pro', sans-serif;
-  }
-  
+}
+
+/* startDiv.style.display = "flex";
+qAndADiv.style.display = "none";
+initialsDiv.style.display = "none";
+highScoresDiv.style.display = "none"; */
+
 main {
-  
+    
 }
 
 .start {
