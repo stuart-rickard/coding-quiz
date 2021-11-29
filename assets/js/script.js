@@ -9,6 +9,7 @@ const blankHighScoresArray = [
 var highScoresArray = blankHighScoresArray;
 const numberOfHighScores = blankHighScoresArray.length;
 
+var viewHighScores = document.getElementById("view-high-scores")
 var startButton = document.getElementById('starter-button');
 var timerDisplay = document.getElementById("timer");
 var questionDiv = document.getElementById("presented-question");
@@ -30,6 +31,7 @@ const initialTime = 30.0;
 var timer = initialTime; // must reset with new quiz
 var stopTimer = false; // must reset with new quiz
 const delayTime = 1000;
+const regularDisplay = true; // this variable is for testing purposes
 
 // Questions array; many thanks to Joanne Chun for writing most of these
 // IMPORTANT: correctAnswer field is matched with id of question button to determine whether answer is correct; don't change one without changing the other
@@ -122,7 +124,6 @@ var createShuffledIndexArray = function() {
 var quizProcess = function() {
     // timerCountdown runs concurrently with calls to displayQuestions and processAnswer
     var timerCountdown = function(){
-        // TODO add stopTimer = true test
         // reduce timer variable by 0.1
         var decreaseTimerVariable = function() {
             if ( questionCounter < numberOfQuestions && stopTimer == false ) {
@@ -130,13 +131,13 @@ var quizProcess = function() {
                 if (timer > 0) {
                     timerDisplay.textContent = "Time: " + timer.toFixed(1);
                 } else {
-                    timerDisplay.textContent = "Time: 0.0";
+                    timerDisplay.textContent = "Out of Time!";
+                    timerDisplay.style.backgroundColor = "red";
                     // if user runs out of time, stop decrementing the timer
-                    // TODO add you've run out of time message
                     clearInterval(timerDecrement); 
                 }
             } else {
-                // if the last question has been answered, stop decrementing the timer
+                // if the last question has been answered or stopTimer is true, stop decrementing the timer
                 clearInterval(timerDecrement);
             };
         };
@@ -226,7 +227,7 @@ var quizProcess = function() {
     }
 
     // TODO hide the intro
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX document.getElementById("start").style.display = "none";
+    // document.getElementById("start").style.display = "none";
 
     // Begin clock
     timerCountdown();
@@ -240,6 +241,7 @@ var processScore = function(){
     console.log( timer );
     console.log(questionCounter);
     console.log(questionShuffledIndex);
+    timerDisplay.style.backgroundColor = "white";
     if (timer < 0) { timer = 0 };
     scoreDisplay.textContent = "Your final score is " + timer.toFixed(1) + ".";
 
@@ -247,23 +249,28 @@ var processScore = function(){
     // TODO call displayHighScores
 }
 
-var displayHighScores = function(){
-    
+var displayHighScores = function(initials){
+    // stop default behavior
+    event.preventDefault;
+    console.log("display high scores");
+    console.log(document.getElementById('initials-text').value);
+    debugger;
     // TODO make scores visible; hide other stuff
-    goBackButton.addEventListener("click", function(){console.log("go back button")
-        // TODO reset variables
-        // TODO go back to start quiz
-            // hide everything and restart the listener
+    goBackButton.addEventListener("click", function(){
+        console.log("go back button");
+        questionCounter = 0; 
+        timer = initialTime; 
+        stopTimer = false; 
+        // make start visible hide everything else
     });
     clearHighScoresButton.addEventListener("click", function(){
         console.log("clear high scores button");
         highScoresArray = blankHighScoresArray;
         updateHighScoresInDOM();
-        uploadHighScores();    
+        uploadHighScores();
+        window.alert("High scores have been cleared.")    
     });
-
 }
-
 
 var updateHighScoresInDOM = function(){
     document.getElementById("hs1i").innerText = highScoresArray[0].initials;
@@ -310,7 +317,7 @@ var updateHighScoresArray = function(initials,score){
 downloadHighScores();
 createShuffledIndexArray();
 startButton.addEventListener("click", quizProcess);
+viewHighScores.addEventListener("click", displayHighScores);
 
-// TODO confirm add and remove event listeners
 // TODO revise order of functions
-
+// fix question shuffling

@@ -7,7 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
@@ -15,55 +19,59 @@
 </head>
 
 <body>
-    <header class="row header">
-        <div class="col-12 d-flex justify-content-between">
-            <div>Your high scores</div>
+    <header class="row header mt-2">
+        <div class="col-10 d-flex justify-content-between">
+            <div class="ml-3" id="view-high-scores">View high scores</div>
             <div id="timer">Time: timer</div>
         </div>
     </header>
     <div class="container">
         <div class="row" id="start">
             <div class="col-2"></div> <!-- spacer column -->
-            <div class="col-8">
-                <h1>Coding Quiz Challenge</h1>
+            <div class="col-8 text-center">
+                <h1 class="font-weight-bold">Coding Quiz Challenge</h1>
                 <p>Try to answer the following head-scratching code-related queries within the time limit.</p>
                 <p>Always stay cognizant that incorrect answers will reduce your time available by ten seconds; this also reduces your score by ten!</p>
-                <button id="starter-button">Start Quiz</button>
+                <button class="btn btn-primary" id="starter-button">Start Quiz</button>
             </div> 
         </div>
         <div class="row div-question-answerform">
             
             <div class="col-2"></div> <!-- spacer column -->
             <div class="col-9 answer-form">
-                <div id="presented-question">not loaded</div>
+                <div class="font-weight-bold h2" id="presented-question">not loaded</div>
                 <!-- TODO button width matches longest -->
-                <div id="answer-list">
+                <div class="d-flex flex-column" id="answer-list">
                   <!-- IMPORTANT: id of button is matched with correctAnswer field to determine whether answer is correct; don't change one without changing the other -->
-                  <button class="answer-button" id="answer-a">not loaded</button>
-                  <button class="answer-button" id="answer-b">not loaded</button>
-                  <button class="answer-button" id="answer-c">not loaded</button>
-                  <button class="answer-button" id="answer-d">not loaded</button>
+                  <button class="btn btn-primary mt-2 text-left" id="answer-a">not loaded</button>
+                  <button class="btn btn-primary mt-2 text-left" id="answer-b">not loaded</button>
+                  <button class="btn btn-primary mt-2 text-left" id="answer-c">not loaded</button>
+                  <button class="btn btn-primary mt-2 text-left" id="answer-d">not loaded</button>
                 </div>
-                <div id="correct-or-wrong">not loaded</div>
+                <div class="border-top-1 mt1 h4 font-italic" id="correct-or-wrong">not loaded</div>
             </div>
             
         </div>
         <div class="row initials">
             <div class="col-2"></div> <!-- spacer column -->
             <div class="col-9">
-                <h1>All done!</h1>
-                <p id="score-display">not loaded</p>
-                <form>
+                <h1 class="font-weight-bold">All done!</h1>
+                <p class="h4" id="score-display">not loaded</p>
+                <form id="initials-form">
+                  Enter initials (3 characters): <input type="text" name="initials-entry" id="initials-text"><br>
+                  <input class="btn btn-primary" type="submit" onclick="displayHighScores()" value="Submit">
+                </form>
+                <!-- <form>
                   <label for="initials-input">Enter initials (3 characters):</label>
                   <input class="form-control" id="initials-input" type="text" placeholder="Default input">
-                  <input type="submit" value="Submit">
-                </form>
+                  <input class="btn btn-primary" type="submit" value="Submit">
+                </form> -->
             </div>
         </div>
         <div class="row high-scores">
             <div class="col-2"></div> <!-- spacer column -->
             <div class="col-5">
-                <h1>High scores</h1>
+                <h1 class="font-weight-bold">High scores</h1>
                 <!--list of scores-->
                 <table class="table">
                   <thead>
@@ -101,8 +109,8 @@
                     </tr>
                   </tbody>
                 </table>        
-                <button id="go-back">Go back</button>
-                <button id="clear-scores">Clear high scores</button>
+                <button class="btn btn-primary" id="go-back">Go back</button>
+                <button class="btn btn-primary" id="clear-scores">Clear high scores</button>
             </div>
         </div>
     </div>
