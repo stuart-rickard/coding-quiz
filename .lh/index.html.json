@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 67,
+            "activePatchIndex": 70,
             "patches": [
                 {
                     "date": 1637611543007,
@@ -276,6 +276,18 @@
                 {
                     "date": 1638147621294,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n                 <h1 class=\"font-weight-bold\">All done!</h1>\r\n                 <p class=\"h4\" id=\"score-display\">not loaded</p>\r\n                 <form id=\"initials-form\">\r\n                   Enter initials (3 characters): <input type=\"text\" name=\"initials-entry\" id=\"initials-text\"><br>\r\n-                  <input class=\"btn btn-primary\" type=\"button\" onclick=\"displayHighScores()\" value=\"Submit\">\r\n+                  <input class=\"btn btn-primary\" type=\"submit\" onclick=\"displayHighScores()\" value=\"Submit\">\r\n                 </form>\r\n                 <!-- <form>\r\n                   <label for=\"initials-input\">Enter initials (3 characters):</label>\r\n                   <input class=\"form-control\" id=\"initials-input\" type=\"text\" placeholder=\"Default input\">\r\n"
+                },
+                {
+                    "date": 1638150973854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 <p>Always stay cognizant that incorrect answers will reduce your time available by ten seconds; this also reduces your score by ten!</p>\r\n                 <button class=\"btn btn-primary\" id=\"starter-button\">Start Quiz</button>\r\n             </div> \r\n         </div>\r\n-        <div class=\"row div-question-answerform\">\r\n+        <div class=\"row\" id=\"div-question-answer\">\r\n             \r\n             <div class=\"col-2\"></div> <!-- spacer column -->\r\n             <div class=\"col-9 answer-form\">\r\n                 <div class=\"font-weight-bold h2\" id=\"presented-question\">not loaded</div>\r\n@@ -51,9 +51,9 @@\n                 <div class=\"border-top-1 mt1 h4 font-italic\" id=\"correct-or-wrong\">not loaded</div>\r\n             </div>\r\n             \r\n         </div>\r\n-        <div class=\"row initials\">\r\n+        <div class=\"row\" id=\"initials\">\r\n             <div class=\"col-2\"></div> <!-- spacer column -->\r\n             <div class=\"col-9\">\r\n                 <h1 class=\"font-weight-bold\">All done!</h1>\r\n                 <p class=\"h4\" id=\"score-display\">not loaded</p>\r\n@@ -67,9 +67,9 @@\n                   <input class=\"btn btn-primary\" type=\"submit\" value=\"Submit\">\r\n                 </form> -->\r\n             </div>\r\n         </div>\r\n-        <div class=\"row high-scores\">\r\n+        <div class=\"row\" id=\"high-scores\">\r\n             <div class=\"col-2\"></div> <!-- spacer column -->\r\n             <div class=\"col-5\">\r\n                 <h1 class=\"font-weight-bold\">High scores</h1>\r\n                 <!--list of scores-->\r\n"
+                },
+                {
+                    "date": 1638151223312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-b\">not loaded</button>\r\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-c\">not loaded</button>\r\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-d\">not loaded</button>\r\n                 </div>\r\n-                <div class=\"border-top-1 mt1 h4 font-italic\" id=\"correct-or-wrong\">not loaded</div>\r\n+                <div class=\"bt3 mt1 h4 font-italic\" id=\"correct-or-wrong\">not loaded</div>\r\n             </div>\r\n             \r\n         </div>\r\n         <div class=\"row\" id=\"initials\">\r\n"
+                },
+                {
+                    "date": 1638151279006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-b\">not loaded</button>\r\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-c\">not loaded</button>\r\n                   <button class=\"btn btn-primary mt-2 text-left\" id=\"answer-d\">not loaded</button>\r\n                 </div>\r\n-                <div class=\"bt3 mt1 h4 font-italic\" id=\"correct-or-wrong\">not loaded</div>\r\n+                <div class=\"bt mt3 h4 font-italic\" id=\"correct-or-wrong\">not loaded</div>\r\n             </div>\r\n             \r\n         </div>\r\n         <div class=\"row\" id=\"initials\">\r\n"
                 }
             ],
             "date": 1637611543007,

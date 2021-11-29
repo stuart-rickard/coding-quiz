@@ -9,13 +9,17 @@ const blankHighScoresArray = [
 var highScoresArray = blankHighScoresArray;
 const numberOfHighScores = blankHighScoresArray.length;
 
-var viewHighScores = document.getElementById("view-high-scores")
-var startButton = document.getElementById('starter-button');
+var viewHighScores = document.getElementById("view-high-scores");
 var timerDisplay = document.getElementById("timer");
+var startDiv = document.getElementById("start");
+var startButton = document.getElementById('starter-button');
+var qAndADiv = document.getElementById("div-question-answer");
 var questionDiv = document.getElementById("presented-question");
 var answerForm = document.getElementById("answer-list");
+var initialsDiv = document.getElementById("initials");
 var scoreDisplay = document.getElementById("score-display");
 var initialsInput = document.getElementById("initials-input");
+var highScoresDiv = document.getElementById("high-scores");
 var goBackButton = document.getElementById("go-back");
 var clearHighScoresButton = document.getElementById("clear-scores");
 var answerA = document.getElementById("answer-a");
@@ -122,6 +126,14 @@ var createShuffledIndexArray = function() {
 };
 
 var quizProcess = function() {
+    if (regularDisplay) {
+        startDiv.style.display = "none";
+        qAndADiv.style.display = "flex";
+        correctOrWrong.style.display = "none";
+        initialsDiv.style.display = "none";
+        highScoresDiv.style.display = "none";
+    };
+    
     // timerCountdown runs concurrently with calls to displayQuestions and processAnswer
     var timerCountdown = function(){
         // reduce timer variable by 0.1
@@ -236,7 +248,12 @@ var quizProcess = function() {
 };
 
 var processScore = function(){
-    // TODO hide quiz panel and turn off event listener
+    if (regularDisplay) {
+        startDiv.style.display = "none";
+        qAndADiv.style.display = "none";
+        initialsDiv.style.display = "flex";
+        highScoresDiv.style.display = "none";
+    };
     console.log("time to processScore");
     console.log( timer );
     console.log(questionCounter);
@@ -249,19 +266,30 @@ var processScore = function(){
     // TODO call displayHighScores
 }
 
-var displayHighScores = function(initials){
+var displayHighScores = function(evt){
     // stop default behavior
-    event.preventDefault;
+    evt.preventDefault;
     console.log("display high scores");
     console.log(document.getElementById('initials-text').value);
-    debugger;
-    // TODO make scores visible; hide other stuff
+    // debugger;
+    if (regularDisplay) {
+        startDiv.style.display = "none";
+        qAndADiv.style.display = "none";
+        initialsDiv.style.display = "none";
+        highScoresDiv.style.display = "flex";
+    };
+
     goBackButton.addEventListener("click", function(){
         console.log("go back button");
         questionCounter = 0; 
         timer = initialTime; 
         stopTimer = false; 
-        // make start visible hide everything else
+        if (regularDisplay) {
+            startDiv.style.display = "flex";
+            qAndADiv.style.display = "none"; 
+            initialsDiv.style.display = "none"; 
+            highScoresDiv.style.display = "none"; 
+        };
     });
     clearHighScoresButton.addEventListener("click", function(){
         console.log("clear high scores button");
