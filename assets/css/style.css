@@ -1,42 +1,5 @@
-/* put it in the center of the page with a max width */
-
-:root {
-  
-}
 
 * {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* startDiv.style.display = "flex";
-qAndADiv.style.display = "none";
-initialsDiv.style.display = "none";
-highScoresDiv.style.display = "none"; */
-
-main {
-    
-}
-
-.start {
-    
-}
-
-.div-question-answerform {
-    /* display: none; */
-}
-
-.question {
-    
-}
-
-#timer {
-    
-}
-
-.answer-form {
-    
-}
-
-/* .answer-button {
-    
-} */

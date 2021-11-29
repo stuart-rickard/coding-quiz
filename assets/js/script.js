@@ -30,9 +30,9 @@ var answerD = document.getElementById("answer-d");
 var correctOrWrong = document.getElementById("correct-or-wrong");
 
 var correctAnswerIs = "";
-const numberOfQuestions = 1;
+const numberOfQuestions = 4;
 var questionCounter = 0; // must reset with new quiz
-const initialTime = 30.0;
+const initialTime = 20.0;
 var timer = initialTime; // must reset with new quiz
 var stopTimer = false; // must reset with new quiz
 const delayTime = 1000;
@@ -161,18 +161,11 @@ var quizProcess = function() {
 
     var processAnswer = function(evt){
         answerForm.removeEventListener("click", processAnswer);
-
-        console.log("answerForm clicked");
-        console.log(evt.target.textContent);
-        console.log(evt.target.id);
         questionCounter++;
-        //debugger;
         
         if (questionCounter < numberOfQuestions) {
-            console.log("keep going");
             
             if (correctAnswerIs == evt.target.id) {
-                console.log("answer is correct");
                 answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Correct!";
@@ -185,12 +178,10 @@ var quizProcess = function() {
                 } else {
                     // bring up next question after delay
                     setTimeout(function(){
-                        console.log("this is delayed")
                         displayQuestions(questionCounter);
                     },delayTime);
                 };
             } else {
-                console.log("answer is wrong");
                 answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
@@ -203,16 +194,13 @@ var quizProcess = function() {
                 } else {
                     // bring up next question
                     setTimeout(function(){
-                        console.log("this is delayed")
                         displayQuestions(questionCounter);
                     },delayTime);
                 };
             };
                         
         } else { //number of questions limit is reached; stop timer
-            console.log("out of questions");
             if (correctAnswerIs == evt.target.id) {
-                console.log("answer is correct");
                 answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Correct!"
@@ -221,7 +209,6 @@ var quizProcess = function() {
                 // bring up processScore after short delay
                 setTimeout(processScore(),delayTime);
             } else {
-                console.log("answer is wrong");
                 answerForm.removeEventListener("click", processAnswer); 
                 // display correctOrWrong
                 correctOrWrong.textContent = "Wrong!"
@@ -236,9 +223,7 @@ var quizProcess = function() {
 
     var displayQuestions = function(i){
         // display questions / answers
-        // TODO hide correct or wrong
-        console.log(workingArrayForShuffling);
-        console.log(questionShuffledIndex);
+        console.log(questionCounter);
         correctOrWrong.style.display = "none";
         questionDiv.textContent = questions[questionShuffledIndex[i]].question;
         answerA.textContent = questions[questionShuffledIndex[i]].answers[0];
@@ -257,9 +242,6 @@ var quizProcess = function() {
 };
 
 var processScore = function(){
-    //debugger;
-    console.log( timer );
-    console.log(questionCounter);
     if (timer < 0) { timer = 0 };
     scoreDisplay.textContent = "Your final score is " + timer.toFixed(1) + ".";
     if (regularDisplay) {
@@ -268,13 +250,9 @@ var processScore = function(){
         initialsDiv.style.display = "flex";
         highScoresDiv.style.display = "none";
     };
-    
-    // html calls displayHighScores
 }
 
 var goBackToStart = function(){
-    //debugger;
-    console.log("go back button");
     // reset variables for new quiz
     timerDisplay.style.backgroundColor = "white";
     questionCounter = 0; 
@@ -295,16 +273,11 @@ var goBackToStart = function(){
         highScoresDiv.style.display = "none"; 
     };
 };
-//debugger;
+
 function handleForm(event) { event.preventDefault(); displayHighScores(); } 
 initialsForm.addEventListener('submit', handleForm);
 
-var displayHighScores = function(evt){
-    //debugger;
-    // stop default behavior
-    //evt.preventDefault;
-    console.log("display high scores");
-    console.log(document.getElementById('initials-text').value);
+var displayHighScores = function(evt){ 
     var ini = document.getElementById('initials-text').value;
     ini = ini.substring(0,3);
 
@@ -349,9 +322,7 @@ var downloadHighScores = function(){
 };
 
 var updateHighScoresArray = function(initials,score){
-    console.log(score);
     for ( i = 0 ; i < numberOfHighScores ; i++ ){
-        console.log(highScoresArray[i].score);
         if ( score > highScoresArray[i].score ) {
             highScoresArray.splice(i,0,{initials: initials, score: score});
             highScoresArray.pop();
@@ -376,11 +347,7 @@ startButton.addEventListener("click", quizProcess);
 viewHighScores.addEventListener("click", displayHighScores);
 goBackButton.addEventListener("click", goBackToStart);
 clearHighScoresButton.addEventListener("click", function(){
-    console.log("clear high scores button");
     highScoresArray = blankHighScoresArray;
     updateHighScoresInDOM();
     uploadHighScores();
 });
-
-// TODO revise order of functions
-// fix question shuffling
