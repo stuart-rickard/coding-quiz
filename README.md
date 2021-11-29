@@ -22,3 +22,4 @@ I believe the completed code meets the challenge criteria, however there is an i
 ## Link to Live Password Generator
   
 The live password generator webpage can be found at this link: 
+https://stuart-rickard.github.io/coding-quiz/

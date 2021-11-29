@@ -254,6 +254,7 @@ var processScore = function(){
 
 var goBackToStart = function(){
     // reset variables for new quiz
+    debugger;
     timerDisplay.style.backgroundColor = "white";
     questionCounter = 0; 
     timer = initialTime;
